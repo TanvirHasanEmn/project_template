@@ -1,0 +1,34 @@
+class IconPath {
+  static const String asset = 'assets/icons/';
+  static const String google = '${asset}google.png';
+  static const String apple = '${asset}apple.png';
+  static const String filer = '${asset}filter.png';
+  static const String location_saved = '${asset}location_saved.png';
+  static const String parking = '${asset}parking.png';
+  static const String location = '${asset}location.png';
+  static const String search_nearby = '${asset}search_nearby.png';
+  static const String star = '${asset}star.png';
+  static const String walk = '${asset}walk.png';
+  static const String money = '${asset}money.png';
+  static const String support = '${asset}support.png';
+  static const String privacy = '${asset}privacy.png';
+  static const String logout = '${asset}logout.png';
+  static const String question = '${asset}question.png';
+  static const String home = '${asset}home.png';
+  static const String home_in = '${asset}home_in.png';
+  static const String call = '${asset}phone.png';
+  static const String call_in = '${asset}phone_in.png';
+  static const String reminder = '${asset}reminder.png';
+  static const String reminder_in = '${asset}reminder_in.png';
+  static const String report = '${asset}report.png';
+  static const String tracker = '${asset}tracker.png';
+  static const String tracker_inactive = '${asset}tracker_inactive.png';
+  static const String capsule = '${asset}capsule.png';
+  static const String report_icon = '${asset}report_icon.png';
+  static const String report_icon_in = '${asset}report_icon_in.png';
+  static const String pills = '${asset}pills.png';
+  static const String sad = '${asset}sad.png';
+  static const String happy = '${asset}happy.png';
+  static const String congress = '${asset}congress.png';
+  static const String trophy = '${asset}trophy.png';
+}
