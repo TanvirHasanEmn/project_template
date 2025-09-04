@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../core/route/app_route.dart';
+import '../../auth/screens/signup.dart';
 import '../../onboarding/screens/onboarding.dart';
 
 class SplashController extends GetxController {
@@ -24,14 +26,14 @@ class SplashController extends GetxController {
 
     if (isFirstTime) {
       await prefs.setBool('is_first_time', false);
-       Get.offAll(() => OnboardingPage());
+      Get.offAllNamed(AppRoute.signin);
     } else {
       final token = prefs.getString('accessToken');
       final role = prefs.getString('userRole') ?? 'client';
 
       if (token == null || token.isEmpty) {
         //Get.offAll(() => SignInScreen());
-        Get.offAll(() => OnboardingPage());
+        Get.offAllNamed(AppRoute.signin);
       } else {
         // Redirect based on role (case insensitive)
         if (role.toString().toLowerCase() == 'client') {
