@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_template/core/global_widget/custom_button.dart';
 import 'package:project_template/core/utility/app_colors.dart';
 import '../../../core/global_widget/custom_date_time_picker.dart';
+import '../../../core/global_widget/custom_drop_down.dart';
 import '../../../core/global_widget/custom_testfield_prefix.dart';
 import '../../../core/validation/validator.dart';
 import '../controller/signup_controller.dart';
@@ -118,25 +119,29 @@ class SigninScreen extends StatelessWidget {
 
                 SizedBox(height: 25.h),
 
+                CustomDropDown(
+                  hintText: 'Select your country',
+                  items: ['Bd', 'Us', 'Canada'],
+                  selectedValue: controller.selectedCountry.value.isEmpty
+                      ? null
+                      : controller.selectedCountry.value,
+                  onChanged: (value) {
+                    controller.updateSelectedCountry(value);
+                  },
+                ),
+
+
+                SizedBox(height: 25.h),
+
 
                 CustomDateTimePicker(
                   hintText: "Select Date",
                   controller: controller.dateController,
-                  onClick: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime(2100),
-                    );
-
-                    // if (pickedDate != null) {
-                    //   // Format the picked date if needed
-                    //   String formattedDate = "${pickedDate.year}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.day.toString().padLeft(2, '0')}";
-                    //   dateController.text = formattedDate;
-                    // }
+                  onClick: () {
+                    debugPrint("Date Selected: ${controller.dateController.text}");
                   },
                 ),
+
 
                 SizedBox(height: 25.h),
 
@@ -145,6 +150,7 @@ class SigninScreen extends StatelessWidget {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                       controller.onNextPressed();
+                      controller.selectedCountry();
                     }
                  },
                 ),

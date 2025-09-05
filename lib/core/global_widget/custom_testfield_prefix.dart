@@ -104,3 +104,12 @@ class CustomTextFieldWithIcon extends StatelessWidget {
     }
   }
 }
+
+
+// CustomTextFieldWithIcon(
+//                   validator: Validation().validatePassword,
+//                   hintText: "Password",
+//                   prefixIconPath: "assets/icons/lock.png",
+//                   controller: controller.passwordController,
+//                   isPasswordField: true,
+//                 ),

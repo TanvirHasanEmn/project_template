@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../core/route/app_route.dart';
-import '../../auth/screens/signup.dart';
-import '../../onboarding/screens/onboarding.dart';
+
 
 class SplashController extends GetxController {
   Timer? timer;
@@ -32,10 +30,10 @@ class SplashController extends GetxController {
       final role = prefs.getString('userRole') ?? 'client';
 
       if (token == null || token.isEmpty) {
-        //Get.offAll(() => SignInScreen());
+            //Get.offAll(() => SignInScreen());
         Get.offAllNamed(AppRoute.signin);
       } else {
-        // Redirect based on role (case insensitive)
+           // Redirect based on role (case insensitive)
         if (role.toString().toLowerCase() == 'client') {
           // Get.offAll(() => NavBar());
         } else if (role.toString().toLowerCase() == 'worker') {
@@ -43,7 +41,6 @@ class SplashController extends GetxController {
         } else {
           Get.snackbar('Error', 'Unknown role: $role');
         }
-
       }
     }
   }
