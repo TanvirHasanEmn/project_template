@@ -58,6 +58,8 @@ dependencies:
   shimmer: ^3.0.0
   #cached_network_image: ^3.4.1
   flutter_datetime_picker_plus: ^2.2.0
+  firebase_core: ^4.1.0
+  firebase_auth: ^6.0.2
 
   flutter_launcher_icons: "^0.14.3"
   flutter_native_splash: ^2.4.6

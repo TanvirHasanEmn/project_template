@@ -4,6 +4,19 @@ allprojects {
         mavenCentral()
     }
 }
+//* firebase
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        // ✅ Add this classpath for Google Sign-In support
+        classpath ("com.google.gms:google-services:4.4.2")  //* change version from 4.4.3 to 4.3.15
+    }
+}
+//* firebase
 
 val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
 rootProject.layout.buildDirectory.value(newBuildDir)

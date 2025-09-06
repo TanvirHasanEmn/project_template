@@ -47,22 +47,7 @@ class SigninScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 25.h),
-                Text(
-                  "Name",
-                  style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.fontGray,
-                  ),
-                ),
-                SizedBox(height: 10.h,),
-                CustomTextFieldWithIcon(
-                  validator: Validation().validateName,
-                  hintText: "Full name",
-                  prefixIconPath: "assets/icons/user.png",
-                  controller: controller.nameController,
-                ),
-                SizedBox(height: 16.h),
+
 
 
 
@@ -101,56 +86,14 @@ class SigninScreen extends StatelessWidget {
                   controller: controller.passwordController,
                   isPasswordField: true,
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 60.h),
 
-                Text(
-                  "Nothing",
-                  style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.fontGray,
-                  ),
-                ),
-                SizedBox(height: 10.h,),
-                CustomTextFieldWithIcon(
-                  hintText: " Test Field",
-                  controller: controller.testController,
-                ),
-
-                SizedBox(height: 25.h),
-
-                CustomDropDown(
-                  hintText: 'Select your country',
-                  items: ['Bd', 'Us', 'Canada'],
-                  selectedValue: controller.selectedCountry.value.isEmpty
-                      ? null
-                      : controller.selectedCountry.value,
-                  onChanged: (value) {
-                    controller.updateSelectedCountry(value);
-                  },
-                ),
-
-
-                SizedBox(height: 25.h),
-
-
-                CustomDateTimePicker(
-                  hintText: "Select Date",
-                  controller: controller.dateController,
-                  onClick: () {
-                    debugPrint("Date Selected: ${controller.dateController.text}");
-                  },
-                ),
-
-
-                SizedBox(height: 25.h),
 
                 CustomButton(text: "Next",
 
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                       controller.onNextPressed();
-                      controller.selectedCountry();
                     }
                  },
                 ),

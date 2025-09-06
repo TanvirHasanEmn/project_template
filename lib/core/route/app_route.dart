@@ -3,12 +3,14 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
 import '../../feature/auth/screens/signup.dart';
+import '../../feature/home/screen/home.dart';
 import '../../feature/splash/screens/splash_screen.dart';
 
 class AppRoute {
   static const String splash = '/Spalsh';
   static const String loginOrSignup = '/loginOrSignUP';
   static const String signin = '/SigninScreen';
+  static const String home = '/Home';
   static const String signup = '/SignupScreen';
   static const String resetPassword = '/ResetPassword';
   static const String pincode = '/PinCodeScreen';
@@ -66,7 +68,12 @@ class AppRoute {
         transition: Transition.rightToLeft,
 
     ),
+    GetPage(
+      name: home,
+      page: () => Home(),
+      transition: Transition.rightToLeft,
 
+    ),
 
     // GetPage(
     //     name: signup,
