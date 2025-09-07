@@ -30,7 +30,7 @@ class SigninScreen extends StatelessWidget {
                 SizedBox(height: 20.h),
 
                 Text(
-                  "Create Your Account",
+                  "Login Your Account",
                   style: GoogleFonts.poppins(
                     fontSize: 22.sp,
                     fontWeight: FontWeight.w600,
@@ -39,7 +39,7 @@ class SigninScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 Text(
-                  "Create account and enjoy all services",
+                  "Login and enjoy all services",
                   style: GoogleFonts.poppins(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
