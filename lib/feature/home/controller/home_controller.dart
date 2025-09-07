@@ -25,3 +25,11 @@ class HomeController extends GetxController {
     }
   }
 }
+
+
+//class HomeController extends GetxController {
+//   Future<void> logout() async {
+//     await FirebaseAuth.instance.signOut();
+//     Get.offAllNamed(AppRoute.signin);
+//   }
+// }
