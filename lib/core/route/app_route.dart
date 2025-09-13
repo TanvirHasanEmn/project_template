@@ -1,8 +1,7 @@
 
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-
-import '../../feature/auth/screens/signup.dart';
+import '../../feature/auth/screens/signin.dart';
 import '../../feature/home/screen/home.dart';
 import '../../feature/splash/screens/splash_screen.dart';
 

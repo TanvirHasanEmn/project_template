@@ -4,19 +4,20 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_template/core/global_widget/custom_button.dart';
 import 'package:project_template/core/utility/app_colors.dart';
-import '../../../core/global_widget/custom_date_time_picker.dart';
-import '../../../core/global_widget/custom_drop_down.dart';
+import 'package:project_template/feature/auth/screens/signup.dart';
 import '../../../core/global_widget/custom_testfield_prefix.dart';
 import '../../../core/validation/validator.dart';
-import '../controller/signup_controller.dart';
+import '../controller/signin_controller.dart';
+import 'forgot_password.dart';
 
-class SignupScreen extends StatelessWidget {
-  final controller = Get.put(SignupController());
-  SignupScreen({super.key});
+class SigninScreen extends StatelessWidget {
+
+  SigninScreen({super.key});
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SigninController());
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(20.w),
@@ -30,7 +31,7 @@ class SignupScreen extends StatelessWidget {
                 SizedBox(height: 20.h),
 
                 Text(
-                  "Create Your Account",
+                  "Login Your Account",
                   style: GoogleFonts.poppins(
                     fontSize: 22.sp,
                     fontWeight: FontWeight.w600,
@@ -39,7 +40,7 @@ class SignupScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 Text(
-                  "Create and enjoy all services",
+                  "Login and enjoy all services",
                   style: GoogleFonts.poppins(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
@@ -85,38 +86,67 @@ class SignupScreen extends StatelessWidget {
                   prefixIconPath: "assets/icons/lock.png",
                   controller: controller.passwordController,
                   isPasswordField: true,
-                ),  SizedBox(height: 16.h),
-
-
-
-                Text(
-                  "Confirm Password",
-                  style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.fontGray,
-                  ),
                 ),
-                SizedBox(height: 10.h,),
-                CustomTextFieldWithIcon(
-                  validator: Validation().validatePassword,
-                  hintText: "Confirm Password",
-                  prefixIconPath: "assets/icons/lock.png",
-                  controller: controller.confirmpasswordController,
-                  isPasswordField: true,
+
+                SizedBox(height: 20.h,),
+
+                //* Forget Password
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => ForgotPassword());
+                      },
+                      child: Text("Forgot Password",
+                          style: GoogleFonts.poppins(
+                            color: AppColor.primaryColor,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 60.h),
+
+                SizedBox(height: 30.h),
 
 
-                CustomButton(text: "Signup",
-
+                CustomButton(text: "Sign in",
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                       controller.onNextPressed();
                     }
                  },
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 30.h),
+                CustomButton(text: "Sign in with google",
+                  onPressed: () {
+
+                    if (_formKey.currentState!.validate()) {
+                      controller.onNextPressed();
+                    }
+                  },
+                ),
+
+                SizedBox(height: 80.h,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => SignupScreen());
+                      },
+                      child: Text("-----------SignUp-----------",
+                        style: GoogleFonts.poppins(
+                          color: AppColor.primaryColor,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
