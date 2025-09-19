@@ -1,34 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_template/feature/auth/controller/signup_db_sqflite.dart';
 
-class CreateAccountsiController extends GetxController {
+class SignupController extends GetxController {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final testController = TextEditingController();
   final dateController = TextEditingController();
   RxString selectedCountry = ''.obs;
-
-  void onNextPressed() {
-    debugPrint("Full Name: ${nameController.text}");
-    debugPrint("Email: ${emailController.text}");
-    debugPrint("Password: ${passwordController.text}");
-    debugPrint("Test: ${testController.text}");
-    debugPrint("DOB: ${dateController.text}");
-    debugPrint("Country: ${selectedCountry.value}");
-  }
 
   void updateSelectedCountry(String? value) {
     selectedCountry.value = value ?? '';
   }
 
+Future<void> onPrint() async {
+  final users = await SignupDatabase.instance.getUsers();
+  debugPrint("📂 All Users: $users");
+}
+
+
+  void onNextPressed() async {
+    final email = emailController.text.trim();
+    final users = await SignupDatabase.instance.getUsers();
+    // debugPrint("📂 All Users: $users");
+
+    // Check if email already exists
+    final exists = await SignupDatabase.instance.userExists(email);
+
+    if (exists) {
+      Get.snackbar(
+        "Error",
+        "User already Exist",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red.withOpacity(0.7),
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    final user = {
+      'name': nameController.text,
+      'email': email,
+      'password': passwordController.text,
+      'country': selectedCountry.value,
+      'dob': dateController.text,
+    };
+
+    // Save into database
+    await SignupDatabase.instance.createUser(user);
+
+
+
+    Get.snackbar(
+      "Success",
+      "User created successfully",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.green.withOpacity(0.7),
+      colorText: Colors.white,
+    );
+    debugPrint("📂 All Users: $users");
+    debugPrint("✅ User saved in database: $user");
+  }
+
+
+  // Future<void> onNextPressed() async {
+  //   debugPrint("Full Name: ${nameController.text}");
+  //   debugPrint("Email: ${emailController.text}");
+  //   debugPrint("Password: ${passwordController.text}");
+  //   debugPrint("DOB: ${dateController.text}");
+  //   debugPrint("Country: ${selectedCountry.value}");
+  //
+  //
+  //   //*sqflite integration
+  // //   final user = {
+  // //     'name': nameController.text,
+  // //     'email': emailController.text,
+  // //     'password': passwordController.text,
+  // //     'country': selectedCountry.value,
+  // //     'dob': dateController.text,
+  // //   };
+  // //
+  // //   // Save into database
+  // //   await SignupDatabase.instance.createUser(user);
+  // //
+  // //   debugPrint("✅ User saved in database: $user");
+  // //
+  // //   // (Optional) fetch all users to check
+  // //   final users = await SignupDatabase.instance.getUsers();
+  // //   debugPrint("📂 All Users: $users");
+  // // }
+
   @override
   void onClose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    testController.dispose();
-    dateController.dispose();
+    nameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    dateController.clear();
     super.onClose();
   }
 }
