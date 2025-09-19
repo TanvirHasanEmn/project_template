@@ -11,6 +11,7 @@ import '../../../core/global_widget/custom_testfield_prefix.dart';
 import '../../../core/validation/validator.dart';
 import '../controller/signin_controller.dart';
 import '../controller/signup_controller.dart';
+import 'forgot_password.dart';
 
 class Signin extends StatelessWidget {
   final controller = Get.put(SigninController());
@@ -87,6 +88,19 @@ class Signin extends StatelessWidget {
                   isPasswordField: true,
                 ),
                 SizedBox(height: 20.h),
+                InkWell(
+                  onTap: () {
+                    Get.to(ForgotPassword());
+                  },
+                  child: Text(
+                    "Forgot Password?",
+                    style: GoogleFonts.poppins(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      color: AppColor.fontGray,
+                    ),
+                  ),
+                ),
 
                 SizedBox(height: 25.h),
 

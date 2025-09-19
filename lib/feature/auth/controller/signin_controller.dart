@@ -53,12 +53,13 @@ class SigninController extends GetxController {
     );
 
     Get.offAll(() => const HomeScreen());
+
   }
 
   @override
   void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
+    emailController.clear();
+    passwordController.clear();
     super.onClose();
   }
 }
