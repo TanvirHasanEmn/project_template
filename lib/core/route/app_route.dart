@@ -62,7 +62,7 @@ class AppRoute {
     //     transition: Transition.rightToLeft),
     GetPage(
         name: signin,
-        page: () => SigninScreen(),
+        page: () => Signup(),
         transition: Transition.rightToLeft,
 
     ),
