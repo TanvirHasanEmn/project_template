@@ -88,6 +88,18 @@ class SignupDatabase {
     return null;
   }
 
+  //reset password
+  Future<int> updatePassword(String email, String newPassword) async {
+    final db = await instance.database;
+    return await db.update(
+      'users',
+      {'password': newPassword},
+      where: 'email = ?',
+      whereArgs: [email],
+    );
+  }
+
+
   /// Close database
   Future close() async {
     final db = await instance.database;

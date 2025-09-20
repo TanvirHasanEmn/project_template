@@ -132,26 +132,31 @@ class Signup extends StatelessWidget {
 
                 SizedBox(height: 25.h),
 
-                CustomButton(text: "Next",
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                      controller.onNextPressed();
-                      controller.selectedCountry();
-                    }
-                 },
-                ),
-
-                SizedBox(height: 40.h,),
-                CustomButton(text: "Print DB",
+                CustomButton(
+                  text: "Next",
                   onPressed: () {
-                      controller.onPrint();
+                    if (_formKey.currentState!.validate()) {
+                      controller.onNextPressed();
+                      // controller.selectedCountry(); // ❌ REMOVE THIS
+                    }
                   },
                 ),
+
+                SizedBox(height: 40.h),
+
+                CustomButton(
+                  text: "Print DB",
+                  onPressed: () {
+                    controller.onPrint();
+                  },
+                  color: Colors.redAccent,
+                ),
+
                 SizedBox(height: 20.h),
 
                 InkWell(
-                  onTap: (){
-                    Get.to(()=>Signin());
+                  onTap: () {
+                    Get.to(() => Signin());
                   },
                   child: Text(
                     "Signin",
@@ -163,6 +168,7 @@ class Signup extends StatelessWidget {
                     textAlign: TextAlign.right,
                   ),
                 ),
+
               ],
             ),
           ),

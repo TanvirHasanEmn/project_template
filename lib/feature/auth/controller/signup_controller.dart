@@ -21,8 +21,6 @@ Future<void> onPrint() async {
 
   void onNextPressed() async {
     final email = emailController.text.trim();
-    final users = await SignupDatabase.instance.getUsers();
-    // debugPrint("📂 All Users: $users");
 
     // Check if email already exists
     final exists = await SignupDatabase.instance.userExists(email);
@@ -49,7 +47,8 @@ Future<void> onPrint() async {
     // Save into database
     await SignupDatabase.instance.createUser(user);
 
-
+    // 🔥 Fetch again after insert
+    final users = await SignupDatabase.instance.getUsers();
 
     Get.snackbar(
       "Success",
@@ -58,8 +57,8 @@ Future<void> onPrint() async {
       backgroundColor: Colors.green.withOpacity(0.7),
       colorText: Colors.white,
     );
-    debugPrint("📂 All Users: $users");
-    debugPrint("✅ User saved in database: $user");
+
+    debugPrint("📂 All Users After Insert: $users");
   }
 
 
