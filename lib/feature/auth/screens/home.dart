@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../core/global_widget/custom_button.dart';
+import 'package:project_template/core/utility/app_colors.dart';
 import '../../auth/screens/signin.dart';
 import '../controller/home_controller.dart';
 
@@ -10,65 +9,55 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
+    final controller = Get.find<HomeController>();
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.offAll(() =>  Signin());
+            },
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+          )
+        ],
+      ),
       body: Padding(
-        padding: EdgeInsets.all(20.w),
-        child: Column(
-          children: [
-            SizedBox(height: 40.h),
-            Text(
-              "Welcome to HomeScreen 🎉",
-              style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20.h),
+        padding: const EdgeInsets.all(16),
+        child: Obx(() {
+          if (controller.users.isEmpty) {
+            return const Center(child: Text("No users found."));
+          }
 
-            // Users Table
-            Expanded(
-              child: Obx(() {
-                if (controller.users.isEmpty) {
-                  return Center(child: Text("No users found"));
-                }
+          return ListView.builder(
+            itemCount: controller.users.length,
+            itemBuilder: (context, index) {
+              final user = controller.users[index];
 
-                return SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    border: TableBorder.all(color: Colors.black26),
-                    columns: const [
-                      DataColumn(label: Text("ID")),
-                      DataColumn(label: Text("Name")),
-                      DataColumn(label: Text("Email")),
-                      DataColumn(label: Text("Password")),
-                      DataColumn(label: Text("Country")),
-                      DataColumn(label: Text("DOB")),
+              return Card(
+                color: AppColor.primaryColor,
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                elevation: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("ID: ${user['id']}"),
+                      Text("Name: ${user['name'] ?? ''}"),
+                      Text("Email: ${user['email'] ?? ''}"),
+                      Text("Password: ${user['password'] ?? ''}"),
+                      Text("Country: ${user['country'] ?? ''}"),
+                      Text("DOB: ${user['dob'] ?? ''}"),
                     ],
-                    rows: controller.users.map((user) {
-                      return DataRow(cells: [
-                        DataCell(Text(user['id'].toString())),
-                        DataCell(Text(user['name'] ?? '')),
-                        DataCell(Text(user['email'] ?? '')),
-                        DataCell(Text(user['password'] ?? '')),
-                        DataCell(Text(user['country'] ?? '')),
-                        DataCell(Text(user['dob'] ?? '')),
-                      ]);
-                    }).toList(),
                   ),
-                );
-              }),
-            ),
-
-            SizedBox(height: 20.h),
-
-            CustomButton(
-              text: "Logout",
-              onPressed: () {
-                Get.offAll(Signin());
-              },
-              color: Colors.redAccent,
-            ),
-          ],
-        ),
+                ),
+              );
+            },
+          );
+        }),
       ),
     );
   }

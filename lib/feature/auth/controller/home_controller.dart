@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:project_template/feature/auth/controller/signup_db_sqflite.dart';
 
 class HomeController extends GetxController {
@@ -12,7 +13,7 @@ class HomeController extends GetxController {
 
   Future<void> fetchUsers() async {
     final data = await SignupDatabase.instance.getUsers();
-    users.value = data;
+    users.assignAll(data);
     print('Fetched users: $data');
   }
 }

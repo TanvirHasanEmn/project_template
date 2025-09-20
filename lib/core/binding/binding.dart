@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../feature/auth/controller/home_controller.dart';
+
 class AppBinding extends Bindings {
   @override
   void dependencies() {
-    // Get.lazyPut(() => SplashController(), fenix: true);
+    Get.lazyPut(() => HomeController(),fenix: true);
     // Get.lazyPut(() => Signincontroller(), fenix: true);
     // Get.lazyPut(() => Signupscreencontroller(), fenix: true);
     // Get.lazyPut(() => SetUpGoalsController(), fenix: true);
